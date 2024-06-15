@@ -24,11 +24,11 @@ process.argv.forEach(function (val) {
 let entry = ['./src/*.ts'];
 let outDir = './lib'
 
-const GlobalName = 'MY';
+const GlobalName = 'SignalEventBus';
 
 let _default = {
 	entryPoints: entry,
-	bundle: false,
+	// bundle: false,
 	platform: 'neutral',
 	globalName: GlobalName,
 	plugins: [],
