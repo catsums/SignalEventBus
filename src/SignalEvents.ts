@@ -6,6 +6,9 @@ export type HandlerList = Map<Function, EventListener>;
 export type Handler<T=any> = (d: T) => void;
 
 /**
+ * 
+ * @class SignalEventBus
+ * 
  * An object that can emit event signals to functions that act as listeners.
  * This makes use of the `EventTarget` interface allows one to add event listeners, but this simplifies the process.
  * This can be used inside and outside of elements and components such that you can manage states of objects from anywhere.
@@ -97,7 +100,7 @@ export type Handler<T=any> = (d: T) => void;
  * 
  * 
  */
-export class SignalEventBus {
+class SignalEventBus {
 	protected static _singleton = new SignalEventBus();
 	public static get Global(){
 		if(!this._singleton){
@@ -176,8 +179,36 @@ export class SignalEventBus {
 		return true;
 	}
 
+	/**
+	 * Subscribes a listener function to the list of events but only handles it once when emitted.
+	 * @param events 
+	 * List of events meant to be subscribed to
+	 * @param handler 
+	 * The handler function which can optionally accept data.
+	 * 
+	 * @returns
+	 * The SignalEventBus object which can be chained.
+	 */
 	public once<T=any>(events:EventType[], handler:Handler<T>) : SignalEventBus;
+	/**
+	 * Subscribes a listener function to an event but only handles it once when emitted.
+	 * @param events 
+	 * An event meant to be subscribed to
+	 * @param handler 
+	 * The handler function which can optionally accept data.
+	 * 
+	 * @returns
+	 * The SignalBusEvent object which can be chained.
+	 */
 	public once<T=any>(event:EventType, handler:Handler<T>) : SignalEventBus;
+	/**
+	 * Subscribes a listener function to a nameless event but only handles it once when emitted.
+	 * @param handler 
+	 * The handler function which can optionally accept data.
+	 * 
+	 * @returns
+	 * The SignalBusEvent object which can be chained.
+	 */
 	public once<T=any>(handler:Handler<T>) : SignalEventBus;
 	once<T=any>(...args:any[]){
 		let thisBus = this;
@@ -364,3 +395,5 @@ export class SignalEventBus {
 	}
 	
 }
+
+export {SignalEventBus}

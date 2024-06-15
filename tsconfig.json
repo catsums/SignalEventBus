@@ -7,6 +7,7 @@
 		"esModuleInterop": true,
 		"declaration": true,
 		"allowJs": true,
+		"jsx": "preserve",
 
 		// "allowImportingTsExtensions": true,
 		"isolatedModules": true,
